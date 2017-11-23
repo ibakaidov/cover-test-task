@@ -8,7 +8,8 @@
 
 ## Стэк
 
-* NodeJS (v8-9)
+* NodeJS
+* MongoDB
 * ImageMagick
 * [botact](https://github.com/bifot/botact)
 
