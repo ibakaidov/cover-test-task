@@ -41,7 +41,7 @@ class Db {
     return post.save(this.connection)
   }
   deletePost({ id }) {
-    return this.then(models.Post.find({ id }).remove())
+    return (models.Post.find({ id }).remove())
   }
 
   getTodayPosts() {
