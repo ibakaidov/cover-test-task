@@ -24,8 +24,4 @@ bot.getLikes = async function (postids) {
   
 }
 
-bot.getLikes([1,2,3,34312,4,5]).catch((err)=>{
-  console.error(err)
-}).then(console.log)
-
 module.exports = bot
