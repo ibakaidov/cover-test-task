@@ -20,7 +20,7 @@ bot.getLikes = async function (postids) {
       el.likes = likes
       return el
     })
-    })
+  })
   
 }
 
