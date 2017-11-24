@@ -1,5 +1,6 @@
 
 const bot = require('./src/js/bot')
+const image = require('./src/js/image')
 const db = require('./src/js/db').instance
 const scheduler = require('./src/js/scheduler')
 
@@ -24,15 +25,18 @@ scheduler(async () => {
       users[user]++
     })
   })
-  let win = null
-  let mlike = 0
+  let winid = null
+  let maxlike = 0
   for (const key in users) {
     if (users.hasOwnProperty(key)) {
       const element = users[key]
-      if (mlike < element) {
-        win = key
-        mlike = element
+      if (maxlike < element) {
+        winid = key
+        maxlike = element
       }
     }
   }
+  let winner = await bot.getUser(winid, ['photo_100'])
+  await image({name: winner.first_name+' '+winner.last_name, likes:maxlike, avatar:winner.photo_100})
+  bot.uploadAndSaveCoverPhoto('./cover.jpg')  
 })
