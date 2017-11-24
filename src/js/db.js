@@ -1,7 +1,7 @@
 'use strict'
 
 const mongoose = require('mongoose')
-const config = require(__dirname + '/../../config.json')
+const {host, name} = require(__dirname + '/../../config.json').db
 
 mongoose.Promise = Promise
 
@@ -34,7 +34,7 @@ class Db {
   }
 
   initDB() {
-    mongoose.connect(`mongodb://${config.db.host}/${config.db.name}`) 
+    mongoose.connect(`mongodb://${host}/${name}`) 
   }
 
   addPost({ id }) {
