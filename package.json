@@ -4,7 +4,9 @@
   "description": "Тестовое задание на обложку с выявлением самого активного пользователя.",
   "main": "index.js",
   "scripts": {
-    "test": "./mode_modules/.bin/mocha tests/*"
+    "test": "./mode_modules/.bin/mocha tests/*",
+    "lint": "eslint .",
+    "fix": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,13 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-mocha": "^4.11.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }
