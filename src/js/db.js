@@ -9,11 +9,6 @@ const models = {
   Post: mongoose.model('Post', new mongoose.Schema({
     id: Number,
     date: Date
-  })),
-  Like: mongoose.model('Like', new mongoose.Schema({
-    postid: Number,
-    uid: Number,
-    date: Date
   }))
 }
 
@@ -46,22 +41,13 @@ class Db {
     return post.save(this.connection)
   }
   deletePost({ id }) {
-    return this.deletePostLikes({postid:id}).then(models.Post.find({ id }).remove())
-  }
-  deleteLike({ postid, uid }) {
-    return models.Like.find({ postid, uid }).remove()
-  }
-  deletePostLikes({ postid }) {
-    return this.getPostLikes({ postid }).remove()
+    return this.then(models.Post.find({ id }).remove())
   }
 
   getTodayPosts() {
     let now = new Date()
     let startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate())
     return models.Post.find({ date: { $gte: startOfToday } })
-  }
-  getPostLikes({ postid }) {
-    return models.Like.find({ postid })
   }
 
 

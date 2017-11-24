@@ -15,20 +15,9 @@ describe('db', () => {
       }).catch(done)
     }).catch(done)
   })
-  it('should add and delete like', (done) => {
-    const uid = 2
-    const postid = 2
-    this.db.addLike({ uid, postid }).then((res) => {
-      expect(res.uid).eq(uid)
-      expect(res.postid).eq(postid)
-      this.db.deleteLike({uid, postid}).then(()=>{
-        done()
-      }).catch(done)
-    }).catch(done)
-  })
 
   it('should find today post', (done)=>{
-    const id = 3
+    const id = 2
     this.db.addPost({ id }).then((res) => {
       expect(res.id).eq(id)
       this.db.getTodayPosts().then((posts)=>{
