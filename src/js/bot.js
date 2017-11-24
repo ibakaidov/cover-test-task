@@ -23,8 +23,8 @@ bot.getLikes = async function (postids) {
   })
 }
 
-bot.getUser = async function (uid) {
-  return api('users.get', { user_ids: uid, access_token: token }).then(({response}) => {
+bot.getUser = async function (uid, fields = []) {
+  return api('users.get', { user_ids: uid, fields, access_token: token }).then(({response}) => {
     if (response.length === 0) throw new Error('User non found')
     return response[0]
   })
