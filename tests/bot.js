@@ -9,4 +9,11 @@ describe('bot', () => {
       done()
     }).catch(done)
   })
+  it('should get user', (done)=>{
+    bot.getUser(1).then((user)=>{
+      expect(user).to.be.a('object')
+      expect(user.id).eq(1)
+      done()
+    }).catch(done)
+  })
 })
