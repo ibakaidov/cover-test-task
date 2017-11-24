@@ -1,6 +1,6 @@
 const schedule = require('node-schedule')
 
-const {time} = require('../../config')
+let {time} = require('../../config')
 
 time = time.split(':')
 
