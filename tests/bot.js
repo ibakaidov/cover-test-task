@@ -1,20 +1,20 @@
-const {expect} = require('chai')
+const { expect } = require('chai')
 const bot = require('../src/js/bot')
-const {test} = require('../config')
+const { test: { posts } } = require('../config')
 
 describe('bot', () => {
-  it('should get likes', (done)=>{
-    bot.getLikes(test.posts).then((likes)=>{
-      expect(likes).to.be.a('array')
-      done()
-    }).catch(done)
+  it('should get likes', async () => {
+    const likes = await bot.getLikes(posts)
+    
+    expect(likes).to.be.a('array')
   })
-  it('should get user', (done)=>{
-    bot.getUser(1, ['sex']).then((user)=>{
-      expect(user).to.be.a('object')
-      expect(user.id).eq(1)
-      expect(user.sex).eq(2)
-      done()
-    }).catch(done)
+  
+  it('should get user', async () => {
+    const user = await bot.getUser(1, [ 'sex' ])
+    const { id, sex } = user
+    
+    expect(user).to.be.a('object')
+    expect(id).eq(1)
+    expect(sex).eq(2)
   })
 })
