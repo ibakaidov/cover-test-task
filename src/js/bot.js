@@ -6,7 +6,8 @@ const { token, confirmation, groupId } = require(__dirname + '/../../config.json
 
 const bot = new Botact({
   token,
-  confirmation
+  confirmation,
+  group_id: groupId
 })
 
 bot.getLikes = async  (postids) => {
