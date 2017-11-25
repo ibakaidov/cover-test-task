@@ -1,0 +1,16 @@
+{
+  "token": "fc1baa72a70b3d2b6dfd5b319d5397ab874a5e0c191fe610867e6d00a7fb90412ccffd346fdb88d971eb2",
+  "confirmation": "32qwszf1",
+  "groupId": 153585640,
+  "time":"19:00",
+  "db": {
+    "host": "127.0.0.1",
+    "name": "liker"
+  },
+  "image":{
+    "tmp":"./images/"
+  },
+  "test":{
+    "posts":[1,2,3,4,5]
+  }
+}
