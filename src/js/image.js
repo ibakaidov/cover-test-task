@@ -1,8 +1,7 @@
 const fs = require('fs-extra')
   , gm = require('gm').subClass({ imageMagick: true })
   , request = require('request-promise')
-  , { image } = require('../../config')
-
+  , { tmp } = require('../../config').
 module.exports = ({ name, likes, avatar }) => {
   return Promise.all([
     drawText({ name, likes }),
@@ -22,7 +21,7 @@ function drawText({ name, likes }) {
       .drawText(718, 169, name)
       .fontSize(28)
       .drawText(718, 210, likes + ' ' + declOfNum(likes, ['лайк', 'лайка', 'лаЙков']))
-      .write(image.tmp + '/cover.jpg', (err) => {
+      .write(tmp + '/cover.jpg', (err) => {
         if (err) return reject(err)
         resolve()
       })
@@ -30,7 +29,7 @@ function drawText({ name, likes }) {
 }
 function getAvatar({ avatar }) {
   return new Promise(async (resolve, reject) => {
-    const originalFilePath = image.tmp + '/avatar.jpg', outputFilePath = image.tmp + '/avatar.png', output = image.tmp + '/avatar.png'
+    const originalFilePath = tmp + '/avatar.jpg', outputFilePath = tmp + '/avatar.png', output = tmp + '/avatar.png'
     await fs.outputFile(originalFilePath, await request({ url: avatar, encoding: null }))
     let size = 100
 
@@ -51,10 +50,10 @@ function getAvatar({ avatar }) {
 }
 function composite() {
   return new Promise(async (resolve, reject) => {
-    gm(image.tmp + '/cover.jpg')
-      .composite(image.tmp + '/avatar.jpg')
+    gm(tmp + '/cover.jpg')
+      .composite(tmp + '/avatar.jpg')
       .geometry('+594+150')
-      .write(image.tmp + '/cover.jpg', (err) => {
+      .write(tmp + '/cover.jpg', (err) => {
         if (err) reject(err)
         resolve()
       })
@@ -62,8 +61,8 @@ function composite() {
 }
 
 async function clean() {
-  await fs.remove(image.tmp + '/avatar.jpg')
-  await fs.remove(image.tmp + '/avatar.png')
+  await fs.remove(tmp + '/avatar.jpg')
+  await fs.remove(tmp + '/avatar.png')
 }
 
 function declOfNum(number, titles) {
