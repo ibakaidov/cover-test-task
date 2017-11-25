@@ -4,9 +4,7 @@ const image = require('./src/js/image')
 const db = require('./src/js/db').instance
 const scheduler = require('./src/js/scheduler')
 
-bot.event('waLL_post_new', (id) => {
-  db.addPost(id)
-})
+bot.event('waLL_post_new', db.addPost)
 
 scheduler(async () => {
   let posts = await db.getTodayPosts()

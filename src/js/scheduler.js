@@ -1,12 +1,9 @@
 const schedule = require('node-schedule')
 
-let {time} = require('../../config')
+const { time } = require('../../config')
 
-time = time.split(':')
+const [ hour, minute ] = time.split(':')
 
-const hour = time[0]
-const minute = time[1]
-
-module.exports = function (cb){
+module.exports = (cb) => {
   schedule.scheduleJob(`${minute} ${hour} * * *`, cb)
 }
