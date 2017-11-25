@@ -4,7 +4,7 @@ const image = require('./src/js/image')
 const db = require('./src/js/db').instance
 const scheduler = require('./src/js/scheduler')
 
-const { tmp } = require('./config')
+const { tmp } = require('./config').image
 
 bot.event('waLL_post_new', db.addPost)
 
