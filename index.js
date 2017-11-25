@@ -31,8 +31,13 @@ scheduler(async () => {
       maxlike = likes
     }
   })
-
+  try {
+   
   let winner = await bot.getUser(winid, ['photo_100'])
-  await image({ name: winner.first_name + ' ' + winner.last_name, likes: maxlike, avatar: winner.photo_100 })
+  await image({ name: winner.first_name + ' ' + winner.last_name, likes: maxlike, avatar: winner.photo_100 }) 
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
   bot.uploadAndSaveCoverPhoto(tmp + '/cover.jpg')
 })
