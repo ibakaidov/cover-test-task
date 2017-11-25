@@ -15,8 +15,8 @@ scheduler(async () => {
 
   likes.forEach((post) => {
     post.likes.forEach((user) => {
-      if (users[user] == null) {
-        users.user = 0
+      if (users[user] == undefined) {
+        users[user] = 0
       }
       users[user]++
     })
@@ -32,7 +32,7 @@ scheduler(async () => {
     }
   })
   if(winid==null) return 
-  
+
   try {
 
     let winner = await bot.getUser(winid, ['photo_100'])
