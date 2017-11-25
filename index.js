@@ -41,5 +41,5 @@ scheduler(async () => {
     console.error(error)
     throw error
   }
-  bot.uploadAndSaveCoverPhoto(tmp + '/cover.jpg')
+  bot.uploadAndSaveCoverPhoto(tmp + '/cover.jpg', {crop_x:0, crop_y: 0, crop_x2: 1490, crop_y2: 400 })
 })
