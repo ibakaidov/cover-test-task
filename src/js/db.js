@@ -32,10 +32,6 @@ class Db {
     let post = new models.Post({ id, date: new Date })
     return post.save()
   }
-  addLike({ postid, uid }) {
-    let post = new models.Like({ postid, uid, date: new Date })
-    return post.save()
-  }
   deletePost({ id }) {
     return (models.Post.find({ id }).remove())
   }
