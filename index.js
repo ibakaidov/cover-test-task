@@ -4,6 +4,8 @@ const image = require('./src/js/image')
 const db = require('./src/js/db').instance
 const scheduler = require('./src/js/scheduler')
 
+const { tmp } = require('./config')
+
 bot.event('waLL_post_new', db.addPost)
 
 scheduler(async () => {
@@ -36,5 +38,5 @@ scheduler(async () => {
   }
   let winner = await bot.getUser(winid, ['photo_100'])
   await image({name: winner.first_name+' '+winner.last_name, likes:maxlike, avatar:winner.photo_100})
-  bot.uploadAndSaveCoverPhoto('./cover.jpg')  
+  bot.uploadAndSaveCoverPhoto(tmp+'/cover.jpg')  
 })
