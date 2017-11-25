@@ -52,7 +52,7 @@ function getAvatar({ avatar }) {
 function composite() {
   return new Promise(async (resolve, reject) => {
     gm(tmp + '/cover.jpg')
-      .composite(tmp + '/avatar.jpg')
+      .composite(tmp + '/avatar.png')
       .geometry('+594+150')
       .write(tmp + '/cover.jpg', (err) => {
         if (err) reject(err)
