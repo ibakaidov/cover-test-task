@@ -5,7 +5,7 @@ const { instance: db } = require('./src/js/db')
 const scheduler = require('./src/js/scheduler')
 const { tmp } = require('./config').image
 
-bot.event('waLL_post_new', db.addPost)
+bot.event('wall_post_new', db.addPost)
 
 scheduler(async () => {
   const posts = await db.getTodayPosts()
@@ -31,10 +31,12 @@ scheduler(async () => {
       maxlike = likes
     }
   })
+  if(winid==null) return 
+  
   try {
-   
-  let winner = await bot.getUser(winid, ['photo_100'])
-  await image({ name: winner.first_name + ' ' + winner.last_name, likes: maxlike, avatar: winner.photo_100 }) 
+
+    let winner = await bot.getUser(winid, ['photo_100'])
+    await image({ name: winner.first_name + ' ' + winner.last_name, likes: maxlike, avatar: winner.photo_100 })
   } catch (error) {
     console.error(error)
     throw error
