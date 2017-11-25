@@ -40,7 +40,8 @@ bot.getLikes = async  (postids) => {
   } catch(e){
     throw e
   }
-    return response.filter((el) => el.likes[0].length != 0)
+
+    return response.filter((el) => el.likes[0]!=null&&el.likes[0].length != 0)
     .map((el) => {
         let likes = []
         el.likes.forEach((sub) => likes.push(...sub))
