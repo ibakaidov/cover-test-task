@@ -1,7 +1,8 @@
 const fs = require('fs-extra')
   , gm = require('gm').subClass({ imageMagick: true })
   , request = require('request-promise')
-  , { tmp } = require('../../config').
+  , { tmp } = require('../../config').image
+
 module.exports = ({ name, likes, avatar }) => {
   return Promise.all([
     drawText({ name, likes }),

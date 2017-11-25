@@ -3,16 +3,16 @@ const bot = require('./src/js/bot')
 const image = require('./src/js/image')
 const db = require('./src/js/db').instance
 const scheduler = require('./src/js/scheduler')
-
 const { tmp } = require('./config').image
 
 bot.event('waLL_post_new', db.addPost)
 
 scheduler(async () => {
-  let posts = await db.getTodayPosts()
-  let ids = posts.map((post) => { return post.id })
-  let likes = await bot.getLikes(ids)
-  let users = {}
+  const posts = await db.getTodayPosts()
+  const ids = posts.map((post) => post.id )
+  const likes = await bot.getLikes(ids)
+  const users = {}
+
   likes.forEach((post) => {
     post.likes.forEach((user) => {
       if (users[user] == null) {
@@ -21,6 +21,7 @@ scheduler(async () => {
       users[user]++
     })
   })
+  
   let winid = null
   let maxlike = 0
 

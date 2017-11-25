@@ -1,5 +1,3 @@
-'use strict'
-
 const mongoose = require('mongoose')
 const {host, name} = require(__dirname + '/../../config.json').db
 
@@ -21,8 +19,6 @@ class Db {
     return this._instance
   }
 
-
-
   constructor() {
     this.initDB()
 
@@ -34,11 +30,11 @@ class Db {
 
   addPost({ id }) {
     let post = new models.Post({ id, date: new Date })
-    return post.save(this.connection)
+    return post.save()
   }
   addLike({ postid, uid }) {
     let post = new models.Like({ postid, uid, date: new Date })
-    return post.save(this.connection)
+    return post.save()
   }
   deletePost({ id }) {
     return (models.Post.find({ id }).remove())
@@ -49,8 +45,6 @@ class Db {
     let startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate())
     return models.Post.find({ date: { $gte: startOfToday } })
   }
-
-
 
 }
 
