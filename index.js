@@ -10,11 +10,7 @@ bot.event('waLL_post_new', db.addPost)
 
 scheduler(async () => {
   let posts = await db.getTodayPosts()
-  let ids = posts.map((post) => {
-    //delete null posts from db
-
-    return post.id
-  })
+  let ids = posts.map((post) => { return post.id })
   let likes = await bot.getLikes(ids)
   let users = {}
   likes.forEach((post) => {
@@ -27,16 +23,15 @@ scheduler(async () => {
   })
   let winid = null
   let maxlike = 0
-  for (const key in users) {
-    if (users.hasOwnProperty(key)) {
-      const element = users[key]
-      if (maxlike < element) {
-        winid = key
-        maxlike = element
-      }
+
+  Object.entries(users).forEach(([userid, likes]) => {
+    if (maxlike < likes) {
+      winid = userid
+      maxlike = likes
     }
-  }
+  })
+
   let winner = await bot.getUser(winid, ['photo_100'])
-  await image({name: winner.first_name+' '+winner.last_name, likes:maxlike, avatar:winner.photo_100})
-  bot.uploadAndSaveCoverPhoto(tmp+'/cover.jpg')  
+  await image({ name: winner.first_name + ' ' + winner.last_name, likes: maxlike, avatar: winner.photo_100 })
+  bot.uploadAndSaveCoverPhoto(tmp + '/cover.jpg')
 })
