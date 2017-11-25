@@ -1,3 +1,5 @@
+const bodyParser = require('body-parser')
+const express = require('express')
 const { Botact, api } = require('botact')
 
 const { token, confirmation, groupId } = require(__dirname + '/../../config.json')
@@ -57,5 +59,13 @@ bot.getUser = async  (uid, fields = []) => {
   if (response.length === 0) throw new Error('User non found')
   return response[0]
 }
+
+
+const app = express()
+
+app.use(bodyParser.json())
+app.post('/', bot.listen)
+app.listen(process.env.PORT||3123)
+
 
 module.exports = bot

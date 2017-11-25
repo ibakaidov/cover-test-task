@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/ibakaidov/cover-test-task#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "botact": "^1.7.3",
+    "express": "^4.16.2",
     "fs-extra": "^4.0.2",
     "gm": "^1.23.0",
     "imagemagick": "^0.1.3",
